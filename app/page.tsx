@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./page.module.css";
 
 const domains = [
@@ -13,6 +14,28 @@ const domains = [
     title: "wc2026.xiaohuang365.com",
     description:
       "独立 Vercel 项目，本项目只保留入口和统计接入说明，不维护专题内容。",
+    image: {
+      src: "/world-cup-2026-entry.jpg",
+      alt: "2026 世界杯专题入口图，包含 New York New Jersey Stadium、Lionel Messi 和 Kylian Mbappe 的真实照片拼版",
+    },
+  },
+];
+
+const imageCredits = [
+  {
+    label: "MetLife Stadium",
+    href: "https://commons.wikimedia.org/wiki/File:Metlife_stadium_(Aerial_view).jpg",
+    credit: "Anthony Quintano, CC BY 2.0",
+  },
+  {
+    label: "Lionel Messi",
+    href: "https://commons.wikimedia.org/wiki/File:Lionel-Messi-Argentina-2022-FIFA-World-Cup.jpg",
+    credit: "Hossein Zohrevand, CC BY 4.0",
+  },
+  {
+    label: "Kylian Mbappe",
+    href: "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_2017.jpg",
+    credit: "Biser Todorov, CC BY 4.0",
   },
 ];
 
@@ -59,6 +82,16 @@ export default function Home() {
           <div className={styles.domainGrid}>
             {domains.map((domain) => (
               <a className={styles.domainCard} href={domain.href} key={domain.href}>
+                {domain.image ? (
+                  <Image
+                    className={styles.domainImage}
+                    src={domain.image.src}
+                    alt={domain.image.alt}
+                    width={1672}
+                    height={941}
+                    sizes="(max-width: 720px) calc(100vw - 48px), 536px"
+                  />
+                ) : null}
                 <span>{domain.label}</span>
                 <strong>{domain.title}</strong>
                 <p>{domain.description}</p>
@@ -67,6 +100,15 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <footer className={styles.footer}>
+        <span>WC2026 入口图使用真实授权照片：</span>
+        {imageCredits.map((item) => (
+          <a href={item.href} key={item.href}>
+            {item.label}（{item.credit}）
+          </a>
+        ))}
+      </footer>
     </div>
   );
 }

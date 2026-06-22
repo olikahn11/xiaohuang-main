@@ -148,8 +148,18 @@ a.secondary {
   min-height: 180px;
   border: 1px solid var(--line);
   border-radius: 8px;
+  overflow: hidden;
   padding: 24px;
   background: var(--soft);
+}
+
+.domainImage {
+  width: calc(100% + 48px);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: -24px -24px 8px;
+  border-bottom: 1px solid var(--line);
 }
 
 .domainCard span {
@@ -167,6 +177,23 @@ a.secondary {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.7;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 36px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.footer a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -210,5 +237,9 @@ a.secondary {
 
   .domainCard {
     min-height: auto;
+  }
+
+  .footer {
+    padding-bottom: 28px;
   }
 }
