@@ -7,6 +7,7 @@
   --accent-dark: #111827;
 
   min-height: 100vh;
+  overflow-x: hidden;
   font-family: var(--font-geist-sans);
   background-color: var(--background);
   color: var(--foreground);
@@ -42,17 +43,17 @@
 
 .main {
   display: grid;
-  gap: 80px;
+  gap: 64px;
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 72px 24px 96px;
+  padding: 48px 24px 88px;
 }
 
 .hero {
   display: grid;
-  gap: 28px;
-  max-width: 820px;
+  gap: 24px;
+  max-width: 760px;
 }
 
 .kicker {
@@ -67,19 +68,20 @@
 }
 
 .hero h1 {
-  max-width: 760px;
-  font-size: clamp(44px, 8vw, 86px);
+  max-width: 720px;
+  font-size: clamp(36px, 5vw, 64px);
   font-weight: 700;
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: 0;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .hero p {
   max-width: 720px;
   color: var(--muted);
-  font-size: 20px;
-  line-height: 1.8;
+  font-size: 18px;
+  line-height: 1.75;
   text-wrap: balance;
 }
 
@@ -177,6 +179,7 @@ a.secondary {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .footer {
@@ -211,6 +214,12 @@ a.secondary {
   }
 }
 
+@media (max-width: 920px) {
+  .domainGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 720px) {
   .header {
     align-items: flex-start;
@@ -219,12 +228,12 @@ a.secondary {
 
   .main {
     gap: 56px;
-    padding-top: 48px;
+    padding-top: 36px;
   }
 
   .hero h1 {
-    font-size: 44px;
-    line-height: 1.05;
+    font-size: 36px;
+    line-height: 1.12;
   }
 
   .hero p {

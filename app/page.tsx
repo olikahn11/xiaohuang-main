@@ -54,12 +54,11 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={styles.hero}>
-          <p className={styles.kicker}>网站总项目</p>
-          <h1>xiaohuang365 的整体入口与访问统计中心。</h1>
+          <p className={styles.kicker}>xiaohuang365</p>
+          <h1>实用工具、专题内容和站点导航。</h1>
           <p>
-            这个项目负责承载 xiaohuang365.com 的总入口，并接入 Vercel
-            Analytics。当前重点观察 wc2026.xiaohuang365.com
-            的访问数据，后续各个二级域名的具体内容可以拆到独立项目里继续做。
+            这里是 xiaohuang365.com 的主站入口。当前重点维护 2026
+            世界杯专题，后续会把不同方向的内容放到各自的二级域名里独立更新。
           </p>
           <div className={styles.actions}>
             <a className={styles.primary} href="https://wc2026.xiaohuang365.com">
@@ -75,8 +74,7 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <h2 id="domains-title">站点入口与统计边界</h2>
             <p>
-              主站访问数据在 xiaohuang-main 项目的 Vercel Analytics
-              中查看；未来二级域名保持独立项目，各自接入并在对应项目查看。
+              主站负责统一导航和基础统计；二级域名负责各自专题内容，互不混在一个代码库里。
             </p>
           </div>
           <div className={styles.domainGrid}>
