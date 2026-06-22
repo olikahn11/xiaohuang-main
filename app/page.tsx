@@ -9,7 +9,7 @@ const qrFallback =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='%23fff'/><text x='48' y='52' text-anchor='middle' font-size='13' fill='%23e9353a'>QR</text></svg>";
 
 const logoFallback =
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><rect width='72' height='72' rx='16' fill='%23e9353a'/><text x='36' y='43' text-anchor='middle' font-size='18' font-weight='700' fill='white'>小黄</text></svg>";
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><rect width='72' height='72' rx='16' fill='%23111827'/><rect x='19' y='19' width='14' height='14' rx='4' fill='%23fff'/><rect x='39' y='19' width='14' height='14' rx='4' fill='%23fff'/><rect x='19' y='39' width='14' height='14' rx='4' fill='%23fff'/><rect x='39' y='39' width='14' height='14' rx='4' fill='%23fff'/><circle cx='36' cy='36' r='10' fill='%23FFD43B'/></svg>";
 
 export default function Home() {
   const [qrPreview, setQrPreview] = useState<string | null>(null);
