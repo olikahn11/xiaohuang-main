@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "xiaohuang365",
+  title: "小黄365 - 2026世界杯前瞻推演与实用工具大全",
   description:
-    "xiaohuang365.com 的网站总入口，当前重点关注 wc2026.xiaohuang365.com 的访问统计。",
+    "小黄365为你提供最全的2026美加墨世界杯实时对阵树、宿命对决预测、夺冠推演。同时提供格式小黄管家、小黄影视TV等实用工具下载。",
   metadataBase: new URL("https://xiaohuang365.com"),
   alternates: {
     canonical: "/",

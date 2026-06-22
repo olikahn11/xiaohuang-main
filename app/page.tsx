@@ -1,112 +1,213 @@
-import Image from "next/image";
+"use client";
+
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
-const domains = [
-  {
-    label: "主站",
-    href: "https://xiaohuang365.com",
-    title: "xiaohuang365.com",
-    description: "由本项目维护，已在根布局接入 Vercel Web Analytics。",
-  },
-  {
-    label: "世界杯专题",
-    href: "https://wc2026.xiaohuang365.com",
-    title: "wc2026.xiaohuang365.com",
-    description:
-      "独立 Vercel 项目，本项目只保留入口和统计接入说明，不维护专题内容。",
-    image: {
-      src: "/world-cup-2026-entry.jpg",
-      alt: "2026 世界杯专题入口图，包含 New York New Jersey Stadium、Lionel Messi 和 Kylian Mbappe 的真实照片拼版",
-    },
-  },
-];
+const qrFallback =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='%23fff'/><text x='48' y='52' text-anchor='middle' font-size='13' fill='%23e9353a'>QR</text></svg>";
 
-const imageCredits = [
-  {
-    label: "MetLife Stadium",
-    href: "https://commons.wikimedia.org/wiki/File:Metlife_stadium_(Aerial_view).jpg",
-    credit: "Anthony Quintano, CC BY 2.0",
-  },
-  {
-    label: "Lionel Messi",
-    href: "https://commons.wikimedia.org/wiki/File:Lionel-Messi-Argentina-2022-FIFA-World-Cup.jpg",
-    credit: "Hossein Zohrevand, CC BY 4.0",
-  },
-  {
-    label: "Kylian Mbappe",
-    href: "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_2017.jpg",
-    credit: "Biser Todorov, CC BY 4.0",
-  },
-];
+const logoFallback =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><rect width='72' height='72' rx='16' fill='%23e9353a'/><text x='36' y='43' text-anchor='middle' font-size='18' font-weight='700' fill='white'>小黄</text></svg>";
 
 export default function Home() {
+  const [qrPreview, setQrPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setQrPreview(null);
+      }
+    }
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
+  function copyWechat() {
+    void navigator.clipboard?.writeText("sunnydream17");
+    alert("微信号 sunnydream17 已成功复制！请前往微信添加好友。");
+  }
+
   return (
-    <div className={styles.page}>
+    <>
+      <div className={styles.topAlert}>
+        <div className={`${styles.wrap} ${styles.alertContent}`}>
+          <span className={styles.alertText}>
+            🔥 加入2026世界杯足球交流群，足球赛事免费看！
+          </span>
+          <div className={styles.alertWechat}>
+            <img
+              src="/assets/wechat-qr.png"
+              alt="微信群二维码"
+              className={styles.alertQr}
+              onClick={(event) => setQrPreview(event.currentTarget.src)}
+              onError={(event) => {
+                event.currentTarget.src = qrFallback;
+              }}
+            />
+            <span>
+              加微信进群:{" "}
+              <button className={styles.copyId} type="button" onClick={copyWechat}>
+                sunnydream17
+              </button>{" "}
+              <span className={styles.copyHint}>(点击复制)</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
       <header className={styles.header}>
-        <a className={styles.brand} href="https://xiaohuang365.com">
-          xiaohuang365
-        </a>
-        <nav className={styles.nav} aria-label="站点导航">
-          <a href="https://xiaohuang365.com">主站</a>
-          <a href="https://wc2026.xiaohuang365.com">WC2026</a>
-        </nav>
+        <div className={`${styles.wrap} ${styles.nav}`}>
+          <Link href="/" className={styles.brand}>
+            <img
+              src="/assets/logo.png"
+              alt="小黄应用图标"
+              onError={(event) => {
+                event.currentTarget.src = logoFallback;
+              }}
+            />
+            <span>小黄365</span>
+          </Link>
+          <nav className={styles.navLinks} aria-label="主导航">
+            <a href="https://wc2026.xiaohuang365.com" className={styles.highlight}>
+              🏆 2026世界杯推演
+            </a>
+            <a href="#tools">小黄系列软件</a>
+          </nav>
+        </div>
       </header>
 
-      <main className={styles.main}>
-        <section className={styles.hero}>
-          <p className={styles.kicker}>xiaohuang365</p>
-          <h1>实用工具、专题内容和站点导航。</h1>
-          <p>
-            这里是 xiaohuang365.com 的主站入口。当前重点维护 2026
-            世界杯专题，后续会把不同方向的内容放到各自的二级域名里独立更新。
-          </p>
-          <div className={styles.actions}>
-            <a className={styles.primary} href="https://wc2026.xiaohuang365.com">
-              访问 WC2026 专题
-            </a>
-            <a className={styles.secondary} href="https://xiaohuang365.com">
-              打开主站
-            </a>
-          </div>
-        </section>
+      <section className={styles.hero} id="top">
+        <div className={styles.wrap}>
+          <h1>决战美加墨 2026</h1>
+          <p>48强世纪扩军！实时大树动态更新 · 宿命对决精准预测 · 沉浸式夺冠路线推演</p>
 
-        <section className={styles.domains} aria-labelledby="domains-title">
-          <div className={styles.sectionHeader}>
-            <h2 id="domains-title">站点入口与统计边界</h2>
-            <p>
-              主站负责统一导航和基础统计；二级域名负责各自专题内容，互不混在一个代码库里。
-            </p>
-          </div>
-          <div className={styles.domainGrid}>
-            {domains.map((domain) => (
-              <a className={styles.domainCard} href={domain.href} key={domain.href}>
-                {domain.image ? (
-                  <Image
-                    className={styles.domainImage}
-                    src={domain.image.src}
-                    alt={domain.image.alt}
-                    width={1672}
-                    height={941}
-                    sizes="(max-width: 720px) calc(100vw - 48px), 536px"
-                  />
-                ) : null}
-                <span>{domain.label}</span>
-                <strong>{domain.title}</strong>
-                <p>{domain.description}</p>
+          <div className={styles.heroLayout}>
+            <div className={styles.wcBannerWrapper}>
+              <a
+                href="https://wc2026.xiaohuang365.com"
+                className={styles.wcBanner}
+                title="点击进入世界杯推演系统"
+              >
+                <img src="/assets/wc-banner.jpg" alt="2026世界杯实时对阵与推演系统" />
+                <div className={styles.bannerOverlayText}>点击进入推演系统 👆</div>
               </a>
-            ))}
+            </div>
+
+            <div className={styles.recruitWrapper}>
+              <h3 className={styles.recruitTitle}>
+                <span>👑</span> 诚招本市独家冠名
+              </h3>
+
+              <div className={styles.adPlaceholder}>
+                [预留广告图片位置]
+                <span>全城精准球迷流量，适合酒吧、餐饮、球鞋周边商户曝光。</span>
+              </div>
+
+              <div className={styles.contactCard}>
+                <img
+                  src="/assets/wechat-qr.png"
+                  alt="微信二维码"
+                  onClick={(event) => setQrPreview(event.currentTarget.src)}
+                  onError={(event) => {
+                    event.currentTarget.src = qrFallback;
+                  }}
+                />
+                <div>
+                  <div className={styles.contactTitle}>扫码添加微信</div>
+                  <div className={styles.contactNote}>备注：合作</div>
+                  <div className={styles.wechatId}>
+                    微信号：<span>sunnydream17</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <main className={styles.wrap} id="tools">
+        <div className={styles.sectionTitle}>
+          <h2>小黄系列软件</h2>
+          <p>为普通电脑与电视用户打造，拒绝复杂，简单好用</p>
+        </div>
+
+        <div className={styles.gridTools}>
+          <article className={styles.productCard}>
+            <div className={styles.productHeader}>
+              <img
+                src="/assets/logo.png"
+                alt="格式小黄管家图标"
+                onError={(event) => {
+                  event.currentTarget.src = logoFallback;
+                }}
+              />
+              <div>
+                <h3>格式小黄管家</h3>
+                <div className={styles.tagList}>
+                  <span>视频转换</span>
+                  <span>图片压缩</span>
+                  <span>GIF生成</span>
+                  <span>Windows/macOS</span>
+                </div>
+              </div>
+            </div>
+            <p>
+              本地全能格式管家。自媒体创作者剪辑球星集锦、日常办公处理图片大小无损压缩的好帮手。
+            </p>
+            <a href="https://format.xiaohuang365.com" className={`${styles.btn} ${styles.primary}`}>
+              了解并下载
+            </a>
+          </article>
+
+          <article className={styles.productCard}>
+            <div className={styles.productHeader}>
+              <div className={styles.tvIcon}>TV</div>
+              <div>
+                <h3>小黄影视 TV</h3>
+                <div className={styles.tagList}>
+                  <span>大屏看球</span>
+                  <span>直播源接入</span>
+                  <span>Android TV</span>
+                </div>
+              </div>
+            </div>
+            <p>
+              客厅看球、看片神器。内置丰富稳定接口，超清无广告。世界杯期间畅享赛事直播源，告别卡顿。
+            </p>
+            <button
+              className={`${styles.btn} ${styles.tv}`}
+              type="button"
+              onClick={() => alert("即将接入高速网盘下载链接，站长正在配置中，敬请期待！")}
+            >
+              前往网盘下载 TVBox
+            </button>
+          </article>
+        </div>
       </main>
 
       <footer className={styles.footer}>
-        <span>WC2026 入口图使用真实授权照片：</span>
-        {imageCredits.map((item) => (
-          <a href={item.href} key={item.href}>
-            {item.label}（{item.credit}）
-          </a>
-        ))}
+        <div className={styles.wrap}>
+          <span>Copyright © 2026 小黄应用 (xiaohuang365.com) | 畅享数字生活与精彩赛事</span>
+        </div>
       </footer>
-    </div>
+
+      {qrPreview ? (
+        <div
+          className={styles.qrModal}
+          aria-hidden="false"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setQrPreview(null);
+            }
+          }}
+        >
+          <div className={styles.closeHint}>点击空白处或按 Esc 关闭</div>
+          <img src={qrPreview} alt="二维码放大预览" />
+        </div>
+      ) : null}
+    </>
   );
 }
