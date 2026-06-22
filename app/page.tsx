@@ -42,7 +42,7 @@ export default function Home() {
               src="/assets/wechat-qr.png"
               alt="微信群二维码"
               className={styles.alertQr}
-              onClick={(event) => setQrPreview(event.currentTarget.src)}
+              onClick={() => setQrPreview("/assets/wechat-card.jpg")}
               onError={(event) => {
                 event.currentTarget.src = qrFallback;
               }}
@@ -110,7 +110,7 @@ export default function Home() {
                 <img
                   src="/assets/wechat-qr.png"
                   alt="微信二维码"
-                  onClick={(event) => setQrPreview(event.currentTarget.src)}
+                  onClick={() => setQrPreview("/assets/wechat-card.jpg")}
                   onError={(event) => {
                     event.currentTarget.src = qrFallback;
                   }}
