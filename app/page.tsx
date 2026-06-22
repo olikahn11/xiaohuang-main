@@ -68,7 +68,7 @@ export default function Home() {
                 event.currentTarget.src = logoFallback;
               }}
             />
-            <span>小黄365</span>
+            <span>xiaohuang365.com</span>
           </Link>
           <nav className={styles.navLinks} aria-label="主导航">
             <a href="https://wc2026.xiaohuang365.com" className={styles.highlight}>
