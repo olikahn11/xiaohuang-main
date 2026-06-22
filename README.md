@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# xiaohuang365
 
-## Getting Started
+This is the top-level website project for `xiaohuang365.com`.
 
-First, run the development server:
+## Purpose
+
+- Main domain: `xiaohuang365.com`
+- Current priority subdomain: `wc2026.xiaohuang365.com`
+- Hosting: Vercel
+- Analytics: Vercel Analytics via `@vercel/analytics`
+
+This project is intended to become the overall entry point for the xiaohuang365 website. Specific content for each subdomain should live in separate projects, while this project can keep the main site pages and lightweight analytics documentation or dashboards.
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Analytics
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Vercel Analytics is installed and mounted in `app/layout.tsx`. After deploying this project on Vercel and visiting the production domains, page views and visitors will appear in the Vercel Analytics dashboard.
 
-## Learn More
+The current free setup is intentionally simple: check daily page views and visitors in each Vercel project's Analytics tab. More detailed analytics can be added later when the site grows.
 
-To learn more about Next.js, take a look at the following resources:
+This repository does not maintain the content of subdomain projects such as `wc2026.xiaohuang365.com`; those projects keep their own codebases. This repository can document and link the analytics setup for the main domain and subdomains.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The current focus is tracking traffic for:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `xiaohuang365.com`
+- `wc2026.xiaohuang365.com`
 
-## Deploy on Vercel
+See [docs/analytics.md](docs/analytics.md) for the project mapping, daily check workflow, free-plan limits, and future subdomain checklist.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Useful Commands
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run build
+```
